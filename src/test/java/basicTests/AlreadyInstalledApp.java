@@ -17,6 +17,7 @@ public class AlreadyInstalledApp {
     public void setup() {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
+        options.setDeviceName("emulator-5554");
         options.setAutomationName("UiAutomator2");
         options.setNoReset(false);
         options.setAppPackage("com.ndosi.automation.qa");

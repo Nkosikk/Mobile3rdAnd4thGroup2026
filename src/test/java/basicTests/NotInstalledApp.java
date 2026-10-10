@@ -19,8 +19,11 @@ public class NotInstalledApp {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
         options.setAutomationName("UiAutomator2");
-        options.setNoReset(false);
+
         options.setApp(System.getProperty("user.dir") + "/src/test/resources/apps/app-qa-release.apk");
+        options.setAppPackage("com.ndosi.automation.qa");
+        options.setAppActivity("com.ndosi.automation.MainActivity");
+        options.setNoReset(true);
 
         try {
             driver = new AppiumDriver(new URL("http://127.0.0.1:4723/"), options);
