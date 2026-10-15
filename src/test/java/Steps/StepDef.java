@@ -1,16 +1,24 @@
 package Steps;
 
+import Screens.NdosiLoginScreen;
+import Utils.AppiumDriverFactory;
+import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.*;
 
 public class StepDef {
+    AppiumDriver driver;
+    NdosiLoginScreen ndosiLoginScreen;
 
     @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-
+    public void the_user_is_on_the_login_page() throws InterruptedException {
+        AppiumDriverFactory.getIntstanceOfAppiumDriverFactory(System.getProperty("user.dir") + "/src/main/Apps/app-qa-release.apk");
+        this.ndosiLoginScreen = new NdosiLoginScreen(AppiumDriverFactory.getDriver());
+        Thread.sleep(5000); // Wait for the app to load
     }
 
     @And("the user click login button")
     public void the_user_click_login_button() {
+        ndosiLoginScreen.clickMainMenuButton();
 
     }
 
