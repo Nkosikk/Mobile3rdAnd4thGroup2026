@@ -5,11 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ndosiLoginScreen {
+public class NdosiLoginScreen {
     private AppiumDriver driver;
 
 
-    public ndosiLoginScreen(AppiumDriver driver) {
+    public NdosiLoginScreen(AppiumDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
