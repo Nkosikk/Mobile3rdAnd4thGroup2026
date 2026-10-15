@@ -9,6 +9,5 @@ Feature: Login Feature
     Then the welcome message should be displayed
 
     Examples:
-      | username | password |
-      | user1    | pass1    |
-      | user2    | pass2    |
+      | username          | password  |
+      | njceles@gmail.com | @12345678 |
