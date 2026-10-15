@@ -21,8 +21,6 @@ public class AlreadyInstalledApp {
         options.setNoReset(false);
         options.setAppPackage("com.ndosi.automation.qa");
         options.setAppActivity("com.ndosi.automation.MainActivity");
-        options.setApp(System.getProperty("user.dir") + "/src/test/resources/apps/app-qa-release.apk");
-
         try {
             driver = new AppiumDriver(new URL("http://127.0.0.1:4723/"), options);
         } catch (MalformedURLException e) {
