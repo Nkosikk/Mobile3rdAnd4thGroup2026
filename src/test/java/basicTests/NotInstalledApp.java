@@ -3,7 +3,7 @@ package basicTests;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
-import org.openqa.selenium.By;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -34,5 +34,12 @@ public class NotInstalledApp {
     public void testimonialTest() {
         driver.findElement(AppiumBy.accessibilityId("Testimonials")).click();
         driver.findElement(AppiumBy.accessibilityId("All Reviews")).isDisplayed();
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
