@@ -11,15 +11,13 @@ public class StepDef {
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() throws InterruptedException {
-
-        AppiumDriverFactory.getIntstanceOfAppiumDriverFactory("/Users/itumelengkgosoane/Desktop/SeleniumJavaGroup42026/JAVA/ApiFlowAssesment/Mobile3rdAnd4thGroup2026/src/main/Apps/app-qa-release.apk");
+        AppiumDriverFactory.getIntstanceOfAppiumDriverFactory(System.getProperty("user.dir") + "/src/main/Apps/app-qa-release.apk");
         this.ndosiLoginScreen = new NdosiLoginScreen(AppiumDriverFactory.getDriver());
-        Thread.sleep(2000); // Wait for 2 seconds to ensure the app is loaded
+        Thread.sleep(5000); // Wait for the app to load
     }
 
     @And("the user click login button")
     public void the_user_click_login_button() {
-
         ndosiLoginScreen.clickMainMenuButton();
 
     }
