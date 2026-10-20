@@ -17,7 +17,7 @@ public class NdosiLoginScreen {
     @FindBy(xpath = "//android.widget.Button")
     WebElement mainMenuButton;
 
-    @FindBy(xpath = "//android.widget.Button[@content-desc='Login / Sign Up']")
+    @FindBy(xpath = "//android.widget.Button[@content-desc='LoginNkosi / Sign Up']")
     WebElement loginSignUpButton;
 
     public void clickMainMenuButton() {
