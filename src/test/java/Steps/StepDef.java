@@ -35,16 +35,19 @@ public class StepDef {
 
     @And("the user enters valid username (.*)$")
     public void the_user_enters_valid_username(String username) {
+        ndosiLoginScreen.enterEmail(username);
 
     }
 
     @And("the user enters valid password (.*)$")
     public void the_user_enters_valid_password(String password) {
+        ndosiLoginScreen.enterPassword(password);
 
     }
 
     @When("the user clicks the submit button")
     public void the_user_clicks_the_submit_button() {
+        ndosiLoginScreen.clickLoginButton();
 
     }
 
