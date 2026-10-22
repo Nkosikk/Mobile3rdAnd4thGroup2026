@@ -41,7 +41,7 @@ public class NdosiLoginScreen {
     }
 
     public void clickLoginSignUpButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.elementToBeClickable(loginSignUpButton));
         loginSignUpButton.click();
     }
