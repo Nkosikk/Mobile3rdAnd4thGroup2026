@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class NdosiLoginScreen {
-    private AppiumDriver driver;
+    private  AppiumDriver driver;
 
 
     public NdosiLoginScreen(AppiumDriver driver) {
@@ -42,7 +42,9 @@ public class NdosiLoginScreen {
     }
 
     public void enterPassword(String password) {
+        txtPassword.click();
         txtPassword.sendKeys(password);
+        driver.executeScript("mobile:hideKeyboard");
     }
 
     public void clickLoginButton() {
