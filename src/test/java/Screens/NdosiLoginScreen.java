@@ -1,12 +1,13 @@
 package Screens;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.HidesKeyboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class NdosiLoginScreen {
-    private  AppiumDriver driver;
+    private AppiumDriver driver;
 
 
     public NdosiLoginScreen(AppiumDriver driver) {
@@ -38,16 +39,20 @@ public class NdosiLoginScreen {
     }
 
     public void enterEmail(String email) {
+        txtEmail.click();
         txtEmail.sendKeys(email);
     }
 
     public void enterPassword(String password) {
         txtPassword.click();
         txtPassword.sendKeys(password);
-        driver.executeScript("mobile:hideKeyboard");
+        driver.executeScript("mobile: hideKeyboard");
     }
 
     public void clickLoginButton() {
         btnLogin.click();
     }
+
+    //ToDo - Hlayi to do the method to verify that we are loggedin
+    // ToDo - Ntakuseni to do method to click Burger Menu
 }
