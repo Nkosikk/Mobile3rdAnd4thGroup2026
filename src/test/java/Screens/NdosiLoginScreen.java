@@ -1,6 +1,7 @@
 package Screens;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.HidesKeyboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -38,14 +39,32 @@ public class NdosiLoginScreen {
     }
 
     public void enterEmail(String email) {
+        txtEmail.click();
         txtEmail.sendKeys(email);
     }
 
     public void enterPassword(String password) {
+        txtPassword.click();
         txtPassword.sendKeys(password);
+        driver.executeScript("mobile: hideKeyboard");
     }
 
     public void clickLoginButton() {
         btnLogin.click();
     }
+    // Please remove the line with your name and task once completed
+
+    //ToDo - Hlayi to do the method to verify that we are loggedin
+    // ToDo - Ntakuseni to do method to click Burger Menu
+    // ToDo - Lydia to click scroll down
+    // ToDo - Agco is going to click admin panel
+    // ToDO - Asiphe to click second bugger menu on admin dash
+    // ToDo - Mbasa to click on groups
+    // ToDo - Sherry to click on create new group
+    // ToDo - Ennie to enter the group name
+    // ToDo - Promise  to enter description
+    // ToDo - Nandipha  to update the year to 2027
+    // ToDo - Zuzeka  to dismiss keyboard
+    // ToDo - Mdu  to click create group
+    // ToDo - Itumeleng  to verify that the group is created
 }
