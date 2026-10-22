@@ -11,7 +11,7 @@ public class StepDef {
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() throws InterruptedException {
-        AppiumDriverFactory.getIntstanceOfAppiumDriverFactory(System.getProperty("user.dir") + "/src/main/Apps/app-qa-release.apk");
+        AppiumDriverFactory.getInstanceOfAppiumDriverFactory(System.getProperty("user.dir") + "/src/main/Apps/app-qa-release.apk");
         this.ndosiLoginScreen = new NdosiLoginScreen(AppiumDriverFactory.getDriver());
         Thread.sleep(5000); // Wait for the app to load
     }

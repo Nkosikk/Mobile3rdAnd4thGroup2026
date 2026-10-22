@@ -9,7 +9,7 @@ import java.net.URL;
 
 public class AppiumDriverFactory {
 
-    private AppiumDriver driver;
+    private static AppiumDriver driver;
 
     public  static AppiumDriverFactory  instanceOfAppiumDriverFactory;
 
