@@ -11,6 +11,7 @@ public class Hooks {
     private static AppiumDriver driver;
 
     public Hooks() {
+
         this.driver = AppiumDriverFactory.getDriver();
     }
 

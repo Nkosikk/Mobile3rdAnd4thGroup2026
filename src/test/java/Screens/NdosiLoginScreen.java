@@ -1,12 +1,13 @@
 package Screens;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.HidesKeyboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -22,6 +23,9 @@ public class NdosiLoginScreen {
     @FindBy(xpath = "//android.widget.Button")
     WebElement mainMenuButton;
 
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Home\"]")
+    WebElement mainHomeScreen;
+
     @FindBy(xpath = "//android.widget.Button[@content-desc='Login / Sign Up']")
     WebElement loginSignUpButton;
 
@@ -31,8 +35,11 @@ public class NdosiLoginScreen {
     @FindBy(xpath = "//android.widget.EditText[@hint='Password']")
     WebElement txtPassword;
 
-    @FindBy(xpath = "//android.widget.Button[@content-desc='Login']")
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Login\"]")
     WebElement btnLogin;
+
+    @FindBy(xpath = "//android.view.View[@content-desc=\"Admin Dashboard\"]")
+    WebElement adminLoginDashboard;
 
     public void clickMainMenuButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -40,10 +47,19 @@ public class NdosiLoginScreen {
         mainMenuButton.click();
     }
 
-    public void clickLoginSignUpButton() {
+    public WebElement scrollToLoginSignUpButtonByXpath (){
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(loginSignUpButton));
-        loginSignUpButton.click();
+                .until(ExpectedConditions.elementToBeClickable(mainHomeScreen)); //OR isDisplayed
+
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))"
+                        + ".scrollIntoView(new UiSelector().description(\"Login / Sign Up\"))"));
+    }
+
+    public void clickLoginSignUpButton() {
+
+        scrollToLoginSignUpButtonByXpath().click();
+
     }
 
     public void enterEmail(String email) {
@@ -60,11 +76,21 @@ public class NdosiLoginScreen {
     }
 
     public void clickLoginButton() {
+
         btnLogin.click();
+    }
+
+    public void verifyAdminSuccessfulLogin(){
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(adminLoginDashboard));
+        Assert.assertTrue(
+                adminLoginDashboard.isDisplayed(),
+                "Admin Login may have been Failed! Admin Dashboard was not displayed on the screen");
+
     }
     // Please remove the line with your name and task once completed
 
-    //ToDo - Hlayi to do the method to verify that we are loggedin
+    //ToDo -> Hlayi to do the method to verify that we are loggedin
     // ToDo - Ntakuseni to do method to click Burger Menu
     // ToDo - Lydia to click scroll down
     // ToDo - Agco is going to click admin panel

@@ -52,7 +52,7 @@ public class StepDef {
 
     @Then("the welcome message should be displayed")
     public void the_welcome_message_should_be_displayed() {
-
+        ndosiLoginScreen.verifyAdminSuccessfulLogin();
     }
 
 

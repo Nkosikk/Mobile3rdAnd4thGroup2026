@@ -12,5 +12,5 @@ import io.cucumber.testng.CucumberOptions;
         monochrome = true,
         tags = ""
 )
-public class runner extends AbstractTestNGCucumberTests {
+public class Runner extends AbstractTestNGCucumberTests {
 }
