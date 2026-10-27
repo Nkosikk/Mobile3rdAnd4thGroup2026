@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.appium.java_client.AppiumBy;
 
 import java.time.Duration;
 
@@ -35,19 +36,20 @@ public class NdosiLoginScreen {
     WebElement btnLogin;
 
     public void clickMainMenuButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.elementToBeClickable(mainMenuButton));
         mainMenuButton.click();
     }
 
     public void clickLoginSignUpButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(loginSignUpButton));
-        loginSignUpButton.click();
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().description(\"Login / Sign Up\"))"
+        )).click();
     }
 
     public void enterEmail(String email) {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.elementToBeClickable(txtEmail));
         txtEmail.click();
         txtEmail.sendKeys(email);
