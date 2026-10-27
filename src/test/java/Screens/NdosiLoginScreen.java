@@ -42,13 +42,14 @@ public class NdosiLoginScreen {
     }
 
     public void clickLoginSignUpButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(loginSignUpButton));
-        loginSignUpButton.click();
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().description(\"Login / Sign Up\"))"
+        )).click();
     }
 
     public void enterEmail(String email) {
-        new WebDriverWait(driver, Duration.ofSeconds(100))
+        new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(txtEmail));
         txtEmail.click();
         txtEmail.sendKeys(email);
