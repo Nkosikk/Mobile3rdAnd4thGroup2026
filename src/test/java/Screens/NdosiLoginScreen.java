@@ -1,5 +1,6 @@
 package Screens;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.HidesKeyboard;
 import org.openqa.selenium.WebElement;
@@ -47,7 +48,7 @@ public class NdosiLoginScreen {
     }
 
     public void enterEmail(String email) {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, Duration.ofSeconds(100))
                 .until(ExpectedConditions.elementToBeClickable(txtEmail));
         txtEmail.click();
         txtEmail.sendKeys(email);
@@ -64,7 +65,18 @@ public class NdosiLoginScreen {
     }
     // Please remove the line with your name and task once completed
 
-    //ToDo - Hlayi to do the method to verify that we are loggedin
+    public boolean isLoggedIn() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.visibilityOfElementLocated(
+                            AppiumBy.accessibilityId("Admin Dashboard")
+                    ));
+            return true;
+        } catch (org.openqa.selenium.TimeoutException e) {
+            return false;
+        }
+    }
+
     // ToDo - Ntakuseni to do method to click Burger Menu
     // ToDo - Lydia to click scroll down
     // ToDo - Agco is going to click admin panel
