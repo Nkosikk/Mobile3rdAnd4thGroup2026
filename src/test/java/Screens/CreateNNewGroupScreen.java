@@ -69,6 +69,11 @@ public class CreateNNewGroupScreen {
     }
 
 
+    public void isGroupCreated() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(descriptionField));
+        descriptionField.isDisplayed();
+    }
     public void enterYear(String year) {
         wait.until(ExpectedConditions.elementToBeClickable(yearField));
         yearField.clear();
