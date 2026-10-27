@@ -18,14 +18,14 @@ public class CreateNNewGroupScreen {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Create Group\"]")
-    WebElement descriptionField;
+    @FindBy(xpath = "//android.widget.Button")
+    WebElement adminDashboardMainMenu;
 
 
-    public void enterDescription(String description) {
+    public void clickOnAdminDashboardMainMenu(String description) {
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(descriptionField));
-        descriptionField.sendKeys(description);
+                .until(ExpectedConditions.elementToBeClickable(adminDashboardMainMenu));
+        adminDashboardMainMenu.click();
     }
 
 
