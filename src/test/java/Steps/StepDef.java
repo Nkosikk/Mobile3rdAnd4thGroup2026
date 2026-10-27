@@ -53,6 +53,10 @@ public class StepDef {
         ndosiLoginScreen.clickLoginButton();
 
     }
+    @And("the user changes the year")
+    public void Change_Year(){
+        ndosiLoginScreen.ChangeYear();
+    }
 
     @Then("the welcome message should be displayed")
     public void the_welcome_message_should_be_displayed() {
