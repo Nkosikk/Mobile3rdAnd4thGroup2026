@@ -1,7 +1,7 @@
 package Screens;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.HidesKeyboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -28,6 +28,9 @@ public class NdosiLoginScreen {
     @FindBy(xpath = "//android.widget.EditText[@hint='Email']")
     WebElement txtEmail;
 
+    @FindBy(xpath = "//android.widget.EditText[@text=\"2026\"]")
+    WebElement yearField;
+
     @FindBy(xpath = "//android.widget.EditText[@hint='Password']")
     WebElement txtPassword;
 
@@ -41,9 +44,10 @@ public class NdosiLoginScreen {
     }
 
     public void clickLoginSignUpButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(loginSignUpButton));
-        loginSignUpButton.click();
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().description(\"Login / Sign Up\"))"
+        )).click();
     }
 
     public void enterEmail(String email) {
@@ -64,7 +68,18 @@ public class NdosiLoginScreen {
     }
     // Please remove the line with your name and task once completed
 
-    //ToDo - Hlayi to do the method to verify that we are loggedin
+    public boolean isLoggedIn() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.visibilityOfElementLocated(
+                            AppiumBy.accessibilityId("Admin Dashboard")
+                    ));
+            return true;
+        } catch (org.openqa.selenium.TimeoutException e) {
+            return false;
+        }
+    }
+
     // ToDo - Ntakuseni to do method to click Burger Menu
     // ToDo - Lydia to click scroll down
     // ToDo - Agco is going to click admin panel
@@ -74,6 +89,12 @@ public class NdosiLoginScreen {
     // ToDo - Ennie to enter the group name
     // ToDo - Promise  to enter description
     // ToDo - Nandipha  to update the year to 2027
+
+    public void ChangeYear() {
+        yearField.click();
+        yearField.sendKeys("2027");
+    }
+
     // ToDo - Zuzeka  to dismiss keyboard
     // ToDo - Mdu  to click create group
     // ToDo - Itumeleng  to verify that the group is created
