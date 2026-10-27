@@ -77,4 +77,6 @@ public class NdosiLoginScreen {
     // ToDo - Zuzeka  to dismiss keyboard
     // ToDo - Mdu  to click create group
     // ToDo - Itumeleng  to verify that the group is created
+    // ToDo - Rilinde  to do logout
+    // ToDo - Sibusiso verify you are logged out
 }
