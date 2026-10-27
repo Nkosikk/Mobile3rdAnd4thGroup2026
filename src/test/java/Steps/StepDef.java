@@ -8,6 +8,7 @@ import io.cucumber.java.PendingException;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.OutputType;
+import org.testng.Assert;
 
 
 public class StepDef {
@@ -53,9 +54,11 @@ public class StepDef {
     @Then("the welcome message should be displayed")
     public void the_welcome_message_should_be_displayed() {
 
+        Assert.assertTrue(
+                ndosiLoginScreen.isLoggedIn(),
+                "Login failed: Admin Dashboard is not displayed"
+        );
+
     }
-
-
-
 
 }
