@@ -1,7 +1,8 @@
 Feature: Login Feature
 
   Scenario Outline: Successful login with valid credentials
-    Given The user is on the login page
+    Given the user is on the login page
+    And the user clicks burger menu
     And the user click login button
     And the user enters valid username <username>
     And the user enters valid password <password>
