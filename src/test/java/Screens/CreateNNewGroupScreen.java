@@ -29,4 +29,9 @@ public class CreateNNewGroupScreen {
     }
 
 
+    public void isGroupCreated() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(descriptionField));
+        descriptionField.isDisplayed();
+    }
 }
