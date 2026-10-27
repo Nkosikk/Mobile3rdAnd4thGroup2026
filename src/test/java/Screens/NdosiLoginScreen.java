@@ -1,5 +1,6 @@
 package Screens;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.HidesKeyboard;
 import org.openqa.selenium.WebElement;
@@ -7,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import io.appium.java_client.AppiumBy;
 
 import java.time.Duration;
 
@@ -36,7 +36,7 @@ public class NdosiLoginScreen {
     WebElement btnLogin;
 
     public void clickMainMenuButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(30))
+        new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(mainMenuButton));
         mainMenuButton.click();
     }
@@ -49,7 +49,7 @@ public class NdosiLoginScreen {
     }
 
     public void enterEmail(String email) {
-        new WebDriverWait(driver, Duration.ofSeconds(30))
+        new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(txtEmail));
         txtEmail.click();
         txtEmail.sendKeys(email);
@@ -66,7 +66,18 @@ public class NdosiLoginScreen {
     }
     // Please remove the line with your name and task once completed
 
-    //ToDo - Hlayi to do the method to verify that we are loggedin
+    public boolean isLoggedIn() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .until(ExpectedConditions.visibilityOfElementLocated(
+                            AppiumBy.accessibilityId("Admin Dashboard")
+                    ));
+            return true;
+        } catch (org.openqa.selenium.TimeoutException e) {
+            return false;
+        }
+    }
+
     // ToDo - Ntakuseni to do method to click Burger Menu
     // ToDo - Lydia to click scroll down
     // ToDo - Agco is going to click admin panel
@@ -80,5 +91,5 @@ public class NdosiLoginScreen {
     // ToDo - Mdu  to click create group
     // ToDo - Itumeleng  to verify that the group is created
     // ToDo - Rilinde  to do logout
-    // ToDo - verify you are logged out
+    // ToDo - Sibusiso verify you are logged out
 }

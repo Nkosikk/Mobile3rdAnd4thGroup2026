@@ -9,6 +9,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.OutputType;
 import Screens.DashboardScreen;
+import org.testng.Assert;
 
 
 public class StepDef {
@@ -69,6 +70,10 @@ public class StepDef {
     }
 
 
+        Assert.assertTrue(
+                ndosiLoginScreen.isLoggedIn(),
+                "Login failed: Admin Dashboard is not displayed"
+        );
 
 
 }
