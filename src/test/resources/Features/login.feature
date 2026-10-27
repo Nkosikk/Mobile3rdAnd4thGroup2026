@@ -9,6 +9,8 @@ Feature: Login Feature
     When the user clicks the submit button
     Then the welcome message should be displayed
 
+    And the user changes the year
+
     Examples:
       | username          | password  |
       | njceles@gmail.com | @12345678 |
