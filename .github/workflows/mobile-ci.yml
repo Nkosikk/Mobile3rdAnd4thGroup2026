@@ -74,9 +74,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: android-test-diagnostics
+          name: android-test-results
           path: |
             appium.log
-            target/surefire-reports/
+            test-output/
           if-no-files-found: ignore
           retention-days: 7
