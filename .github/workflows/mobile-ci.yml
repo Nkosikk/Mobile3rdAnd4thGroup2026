@@ -68,18 +68,7 @@ jobs:
           profile: pixel_6
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
-          script: |
-            appium --log appium.log >/dev/null 2>&1 &
-            APPIUM_PID=$!
-            trap 'kill "$APPIUM_PID"' EXIT
-            for attempt in {1..30}; do
-              if curl --fail --silent http://127.0.0.1:4723/status >/dev/null; then
-                break
-              fi
-              sleep 2
-            done
-            curl --fail --silent http://127.0.0.1:4723/status >/dev/null
-            mvn --batch-mode --no-transfer-progress -Dtest=basicTests.NotInstalledApp test
+          script: bash .github/scripts/run-android-test.sh
 
       - name: Upload test diagnostics
         if: always()
