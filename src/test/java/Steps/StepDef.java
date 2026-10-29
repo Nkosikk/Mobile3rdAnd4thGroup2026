@@ -8,6 +8,7 @@ import io.cucumber.java.PendingException;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.OutputType;
+import org.testng.Assert;
 
 
 public class StepDef {
@@ -21,9 +22,10 @@ public class StepDef {
         Thread.sleep(5000); // Wait for the app to load
     }
 
-    @And("the user clicks burger menu")
-    public void theUserClicksBurgerMenu() {
+    @And("the clicks burger menu")
+    public void theClicksBurgerMenu() {
         ndosiLoginScreen.clickMainMenuButton();
+
     }
 
     @And("the user click login button")
@@ -55,6 +57,12 @@ public class StepDef {
 
     }
 
+
+    @And("the user click on the second burger menu on the admin dashboard")
+    public void theUserClickOnTheSecondBurgerMenuOnTheAdminDashboard() {
+        ndosiLoginScreen.clickAdminBuggerButton();
+
+    }
 
 
 

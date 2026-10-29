@@ -34,6 +34,10 @@ public class NdosiLoginScreen {
     @FindBy(xpath = "//android.widget.Button[@content-desc='Login']")
     WebElement btnLogin;
 
+    @FindBy(xpath = "//android.widget.ScrollView/android.view.View[1]")
+    WebElement adminBuggerButton;
+
+
     public void clickMainMenuButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(mainMenuButton));
@@ -60,8 +64,17 @@ public class NdosiLoginScreen {
     }
 
     public void clickLoginButton() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(btnLogin));
         btnLogin.click();
     }
+
+    public void clickAdminBuggerButton() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(adminBuggerButton));
+        adminBuggerButton.click();
+    }
+
     // Please remove the line with your name and task once completed
 
     //ToDo - Hlayi to do the method to verify that we are loggedin
