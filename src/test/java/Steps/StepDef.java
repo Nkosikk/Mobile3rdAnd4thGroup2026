@@ -64,6 +64,7 @@ public class StepDef {
                 ndosiLoginScreen.isLoggedIn(),
                 "Login failed: Admin Dashboard is not displayed"
         );
+        ndosiLoginScreen.verifyAdminSuccessfulLogin();
     }
 
     @And("the user clicks burger menu on the dashboard")
