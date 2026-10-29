@@ -27,6 +27,25 @@ public class DashboardScreen {
         burgerMenuButton.click();
     }
 
+    public void clickGroups() {
+        WebElement groupsOption = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.accessibilityId("Groups")
+                ));
+
+        groupsOption.click();
+    }
+
+    public void clickCreateNewGroup() {
+        WebElement createNewGroupButton = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(
+                        AppiumBy.accessibilityId("+ Create New Group")
+                ));
+
+        createNewGroupButton.click();
+    }
+
+
     public void clickLogout() {
         driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true))" +

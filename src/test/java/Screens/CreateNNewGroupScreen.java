@@ -9,7 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
+import org.openqa.selenium.By;
+import java.time.YearMonth;
 import java.time.Duration;
 
 public class CreateNNewGroupScreen {
@@ -49,6 +50,17 @@ public class CreateNNewGroupScreen {
 
 
 
+    @FindBy(xpath = "//android.widget.Button[@content-desc='Previous month']")
+    private WebElement previousMonthButton;
+
+    @FindBy(xpath = "//android.widget.Button[@content-desc='Next month']")
+    private WebElement nextMonthButton;
+
+    @FindBy(xpath = "//android.widget.Button[starts-with(@content-desc, 'Select year')]")
+    private WebElement monthYearHeader;
+
+
+
     @FindBy(xpath = "//android.widget.Button[@content-desc='OK']")
     private WebElement datePickerOkButton;
 
@@ -82,14 +94,69 @@ public class CreateNNewGroupScreen {
     }
 
 
-    public void selectDate(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d, EEEE, MMMM d, yyyy", Locale.ENGLISH);
-        String dateDescription = date.format(formatter);
-        WebElement dayButton = wait.until(ExpectedConditions.elementToBeClickable(org.openqa.selenium.By.xpath("//android.widget.Button[@content-desc='" + dateDescription + "']"))
+    public void dismissKeyboard() {
+        try {
+            driver.executeScript("mobile: hideKeyboard");
+        } catch (Exception e) {
+            // Keyboard may already be hidden.
+        }
+    }
+
+
+//This method reads the month/year displayed by the header and navigates to the requested month.
+
+    public void navigateToMonth(LocalDate targetDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH);
+
+        YearMonth targetMonth = YearMonth.from(targetDate);
+        WebDriverWait calendarWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        for (int attempt = 0; attempt < 24; attempt++) {
+            String description = calendarWait.until(
+                    ExpectedConditions.visibilityOf(monthYearHeader)).getAttribute("contentDescription");
+
+            if (description == null || !description.contains("\n")) {
+                throw new IllegalStateException("Could not read the displayed calendar month.");
+            }
+
+            String displayedMonth = description.substring(
+                    description.lastIndexOf('\n') + 1).trim();
+
+            YearMonth currentMonth =
+                    YearMonth.parse(displayedMonth, formatter);
+
+            if (currentMonth.equals(targetMonth)) {
+                return;
+            }
+
+            if (currentMonth.isBefore(targetMonth)) {
+                calendarWait.until(ExpectedConditions.elementToBeClickable(nextMonthButton)).click();
+            } else {calendarWait.until(ExpectedConditions.elementToBeClickable(previousMonthButton)).click();
+            }
+        }
+
+        throw new IllegalStateException("Could not navigate to calendar month: " + targetMonth
         );
+    }
+
+
+    public void selectDate(LocalDate date) {
+        // Navigate to the requested month and year first
+        navigateToMonth(date);
+
+        // Build the dynamic accessibility description for the requested day
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d, EEEE, MMMM d, yyyy", Locale.ENGLISH);
+
+        String dateDescription = date.format(formatter);
+
+        By dayLocator = By.xpath("//android.widget.Button[@content-desc='" + dateDescription + "']");
+
+        // Wait for the requested day to become clickable
+        WebElement dayButton = wait.until(ExpectedConditions.elementToBeClickable(dayLocator));
 
         dayButton.click();
 
+        // Confirm the selected date
         wait.until(ExpectedConditions.elementToBeClickable(datePickerOkButton)).click();
     }
 
@@ -104,15 +171,33 @@ public class CreateNNewGroupScreen {
         endDateButton.click();
     }
 
-    public void confirmSelectedDate() {
-        wait.until(ExpectedConditions.elementToBeClickable(datePickerOkButton));
-        datePickerOkButton.click();
+    public void selectStartDate(LocalDate date) {
+        clickStartDate();
+        selectDate(date);
     }
+
+    public void selectEndDate(LocalDate date) {
+        clickEndDate();
+        selectDate(date);
+    }
+
+
+    //Month Navigation Method
+
+    public void clickNextMonth() {
+        wait.until(ExpectedConditions.elementToBeClickable(nextMonthButton));
+        nextMonthButton.click();
+    }
+
+    public void clickPreviousMonth() {
+        wait.until(ExpectedConditions.elementToBeClickable(previousMonthButton));
+        previousMonthButton.click();
+    }
+
 
     public void clickCreateGroup() {
         wait.until(ExpectedConditions.elementToBeClickable(createGroupButton));
         createGroupButton.click();
     }
-
 
 }
