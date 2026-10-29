@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -36,6 +37,9 @@ public class NdosiLoginScreen {
 
     @FindBy(xpath = "//android.widget.Button[@content-desc='Login']")
     WebElement btnLogin;
+
+    @FindBy(xpath = "//android.view.View[@content-desc=\"Admin Dashboard\"]")
+    WebElement adminLoginDashboard;
 
     public void clickMainMenuButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -93,6 +97,15 @@ public class NdosiLoginScreen {
     public void ChangeYear() {
         yearField.click();
         yearField.sendKeys("2027");
+    }
+
+    public void verifyAdminSuccessfulLogin() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(adminLoginDashboard));
+        Assert.assertTrue(
+                adminLoginDashboard.isDisplayed(),
+                "Admin Login may have been Failed! Admin Dashboard was not displayed on the screen");
+
     }
 
     // ToDo - Zuzeka  to dismiss keyboard
