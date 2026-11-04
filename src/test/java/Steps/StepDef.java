@@ -10,18 +10,26 @@ import io.cucumber.java.en.*;
 import org.openqa.selenium.OutputType;
 import Screens.DashboardScreen;
 import org.testng.Assert;
+import Screens.AdminPanelScreen;
 
 
 public class StepDef {
 
     NdosiLoginScreen ndosiLoginScreen;
     DashboardScreen dashboardScreen;
+    AdminPanelScreen adminPanelScreen;
 
     @Given("The user is on the login page")
     public void the_user_is_on_the_login_page() throws InterruptedException {
-        AppiumDriverFactory.getInstanceOfAppiumDriverFactory(System.getProperty("user.dir") + "/src/main/Apps/app-qa-release.apk");
+
+        AppiumDriverFactory.getInstanceOfAppiumDriverFactory(
+                System.getProperty("user.dir") + "/src/main/Apps/app-qa-release.apk"
+        );
+
         this.ndosiLoginScreen = new NdosiLoginScreen(AppiumDriverFactory.getDriver());
         this.dashboardScreen = new DashboardScreen(AppiumDriverFactory.getDriver());
+        this.adminPanelScreen = new AdminPanelScreen(AppiumDriverFactory.getDriver());
+
         Thread.sleep(5000); // Wait for the app to load
     }
 
@@ -74,6 +82,16 @@ public class StepDef {
     @And("the user clicks logout")
     public void the_user_clicks_logout() {
         dashboardScreen.clickLogout();
+    }
+
+    @And("the user scrolls to admin panel")
+    public void the_user_scrolls_to_admin_panel() {
+        adminPanelScreen.scrollToAdminPanel();
+    }
+
+    @And("the user clicks admin panel")
+    public void the_user_clicks_admin_panel() {
+        adminPanelScreen.clickAdminPanel();
     }
 
 

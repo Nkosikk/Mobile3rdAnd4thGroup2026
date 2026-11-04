@@ -37,6 +37,7 @@ public class NdosiLoginScreen {
     @FindBy(xpath = "//android.widget.Button[@content-desc='Login']")
     WebElement btnLogin;
 
+
     public void clickMainMenuButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(mainMenuButton));
@@ -66,6 +67,8 @@ public class NdosiLoginScreen {
     public void clickLoginButton() {
         btnLogin.click();
     }
+
+
     // Please remove the line with your name and task once completed
 
     public boolean isLoggedIn() {
@@ -82,7 +85,6 @@ public class NdosiLoginScreen {
 
     // ToDo - Ntakuseni to do method to click Burger Menu
     // ToDo - Lydia to click scroll down
-    // ToDo - Agco is going to click admin panel
     // ToDO - Asiphe to click second bugger menu on admin dash
     // ToDo - Mbasa to click on groups
     // ToDo - Sherry to click on create new group

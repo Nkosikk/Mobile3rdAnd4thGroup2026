@@ -18,12 +18,13 @@ public class DashboardScreen {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//android.widget.ScrollView/android.widget.Button")
+    @FindBy(xpath = "//android.widget.ImageView/following-sibling::android.widget.Button[1]")
     WebElement burgerMenuButton;
 
     public void clickBurgerMenu() {
-        new WebDriverWait(driver, Duration.ofSeconds(30))
+        new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(burgerMenuButton));
+
         burgerMenuButton.click();
     }
 

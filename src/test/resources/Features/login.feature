@@ -9,6 +9,8 @@ Feature: Login Feature
     When the user clicks the submit button
     Then the welcome message should be displayed
     And the user clicks burger menu on the dashboard
+    And the user scrolls to admin panel
+    And the user clicks admin panel
     And the user clicks logout
 
     And the user changes the year
@@ -17,4 +19,4 @@ Feature: Login Feature
 
     Examples:
       | username          | password  |
-      | rilinde41@gmail.com | 123456789@ |
+      | admin@gmail.com | @12345678 |
